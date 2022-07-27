@@ -1,4 +1,12 @@
-edit a pod only possible for a few parameters in spec
+config for kubernetes in YML extension VS code
+    "yaml.schemas": {
+        "kubernetes": "*.yaml"
+    }
+
+		Ctrl+K   	Cut current line into cutbuffer
+		Alt+6	Copy current line into cutbuffer
+		Ctrl+U	Paste contents of cutbuffer
+		Alt+E	Redo last undone action
 
 if there is a definition file, edit with nano
 if there is no definition file
@@ -15,7 +23,12 @@ See custom columns [https://kubernetes.io/docs/reference/kubectl/overview/#custo
 kubectl create deployment nginx --image=nginx --dry-run=client  -o yaml > file.yaml
 
 export ns=default
-alias k='kubectl -n $ns' # This helps when namespace in question doesn't have a friendly name 
-alias kdr= 'kubectl -n $ns -o yaml --dry-run'.  # run commands in dry run mode and generate yaml.
+alias k='kubectl -n $ns' # This helps when namespace in question doesn't have a friendly name
+	OR
+kubectl config set-context $(kubectl config current-context) --namespace=name
+
+alias kdr='kubectl -n $ns -o yaml --dry-run=client > output.yaml'.  # run commands in dry run mode and generate yaml.
 
 kubectl exec pod_name -- ls /var/run/secrets/kubernetes.io/serviceaccount
+
+kubect logs pod
