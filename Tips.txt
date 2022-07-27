@@ -1,0 +1,21 @@
+edit a pod only possible for a few parameters in spec
+
+if there is a definition file, edit with nano
+if there is no definition file
+	kubectl get por podname -o yaml > file.txt
+
+-o, --output='': Output format. One of:
+json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file|custom-columns-file|custom-columns|wide
+See custom columns [https://kubernetes.io/docs/reference/kubectl/overview/#custom-columns], golang template
+[http://golang.org/pkg/text/template/#pkg-overview] and jsonpath template
+[https://kubernetes.io/docs/reference/kubectl/jsonpath/].
+
+--dry-run=client : option to test the command it doesnt create the resources
++ -o yaml: to have the configuration file tested and run it from there instead of creating a new file from 0
+kubectl create deployment nginx --image=nginx --dry-run=client  -o yaml > file.yaml
+
+export ns=default
+alias k='kubectl -n $ns' # This helps when namespace in question doesn't have a friendly name 
+alias kdr= 'kubectl -n $ns -o yaml --dry-run'.  # run commands in dry run mode and generate yaml.
+
+kubectl exec pod_name -- ls /var/run/secrets/kubernetes.io/serviceaccount
